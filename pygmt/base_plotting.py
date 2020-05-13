@@ -70,6 +70,7 @@ class BasePlotting:
         W="shorelines",
         G="land",
         S="water",
+        c="ax",
     )
     @kwargs_to_strings(R="sequence")
     def coast(self, **kwargs):
@@ -146,6 +147,7 @@ class BasePlotting:
         F="box",
         G="truncate",
         W="scale",
+        c="ax",
     )
     @kwargs_to_strings(R="sequence", G="sequence")
     def colorbar(self, **kwargs):
@@ -225,6 +227,7 @@ class BasePlotting:
         S="resample",
         U="logo",
         W="pen",
+        c="ax",
     )
     @kwargs_to_strings(R="sequence", L="sequence", A="sequence_plus")
     def grdcontour(self, grid, **kwargs):
@@ -288,7 +291,9 @@ class BasePlotting:
                 lib.call_module("grdcontour", arg_str)
 
     @fmt_docstring
-    @use_alias(R="region", J="projection", W="pen", B="frame", I="shading", C="cmap")
+    @use_alias(
+        R="region", J="projection", W="pen", B="frame", I="shading", C="cmap", c="ax"
+    )
     @kwargs_to_strings(R="sequence")
     def grdimage(self, grid, **kwargs):
         """
@@ -333,6 +338,7 @@ class BasePlotting:
         Wc="contourpen",
         Wm="meshpen",
         Wf="facadepen",
+        c="ax",
         p="perspective",
     )
     @kwargs_to_strings(R="sequence", p="sequence")
@@ -438,6 +444,7 @@ class BasePlotting:
         i="columns",
         l="label",
         C="cmap",
+        c="ax",
     )
     @kwargs_to_strings(R="sequence", i="sequence_comma")
     def plot(self, x=None, y=None, data=None, sizes=None, direction=None, **kwargs):
@@ -555,6 +562,7 @@ class BasePlotting:
         L="triangular_mesh_pen",
         i="columns",
         C="levels",
+        c="ax",
     )
     @kwargs_to_strings(R="sequence", i="sequence_comma")
     def contour(self, x=None, y=None, z=None, data=None, **kwargs):
@@ -622,7 +630,7 @@ class BasePlotting:
                 lib.call_module("contour", arg_str)
 
     @fmt_docstring
-    @use_alias(R="region", J="projection", B="frame")
+    @use_alias(R="region", J="projection", B="frame", c="ax")
     @kwargs_to_strings(R="sequence")
     def basemap(self, **kwargs):
         """
@@ -663,7 +671,7 @@ class BasePlotting:
             lib.call_module("basemap", build_arg_string(kwargs))
 
     @fmt_docstring
-    @use_alias(R="region", J="projection")
+    @use_alias(R="region", J="projection", c="ax")
     @kwargs_to_strings(R="sequence")
     def logo(self, **kwargs):
         """
@@ -698,7 +706,7 @@ class BasePlotting:
             lib.call_module("logo", build_arg_string(kwargs))
 
     @fmt_docstring
-    @use_alias(R="region", J="projection")
+    @use_alias(R="region", J="projection", c="ax")
     @kwargs_to_strings(R="sequence")
     def image(self, imagefile, **kwargs):
         """
@@ -733,7 +741,7 @@ class BasePlotting:
             lib.call_module("image", arg_str)
 
     @fmt_docstring
-    @use_alias(R="region", J="projection", D="position", F="box")
+    @use_alias(R="region", J="projection", D="position", F="box", c="ax")
     @kwargs_to_strings(R="sequence")
     def legend(self, spec=None, position="JTR+jTR+o0.2c", box="+gwhite+p1p", **kwargs):
         """
@@ -788,7 +796,7 @@ class BasePlotting:
             lib.call_module("legend", arg_str)
 
     @fmt_docstring
-    @use_alias(R="region", J="projection", B="frame")
+    @use_alias(R="region", J="projection", B="frame", c="ax")
     @kwargs_to_strings(
         R="sequence",
         textfiles="sequence_space",
