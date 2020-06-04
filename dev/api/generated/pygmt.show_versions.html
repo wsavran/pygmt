@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
     
-        <title>Computation times &mdash; PyGMT</title>
+        <title>pygmt.show_versions &mdash; PyGMT</title>
     
 
 
@@ -45,6 +45,8 @@
   <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pygmt.datasets.load_earth_relief" href="pygmt.datasets.load_earth_relief.html" />
+    <link rel="prev" title="pygmt.print_clib_info" href="pygmt.print_clib_info.html" />
     <!-- Google Analytics tracking code -->
     <!-- See https://developers.google.com/analytics/devguides/collection/analyticsjs/ for documentation. -->
     <!-- 'storage': 'none' disables cookies -->
@@ -106,7 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/first-figure.html">Making your first figure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery/index.html">Gallery</a></li>
 </ul>
 <p class="caption"><span class="caption-text">User Guide</span></p>
 <ul>
@@ -116,8 +118,23 @@
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/plot.html">Plotting data points</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference documentation</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Reference</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#plotting">Plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#data-processing">Data Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gmt-defaults">GMT Defaults</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#miscellaneous">Miscellaneous</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="pygmt.which.html">pygmt.which</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pygmt.test.html">pygmt.test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pygmt.print_clib_info.html">pygmt.print_clib_info</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">pygmt.show_versions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#datasets">Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#exceptions">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#gmt-c-api">GMT C API</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
 </ul>
 
@@ -185,7 +202,9 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>Computation times</li>
+          <li><a href="../index.html">API Reference</a> &raquo;</li>
+        
+      <li>pygmt.show_versions</li>
     
     
     <li class="source-link">
@@ -193,10 +212,7 @@
             
                 
                 
-                
-                    
-                
-                <a href="https://github.com/GenericMappingTools/pygmt/edit/master/doc/../examples/gallery/coast/sg_execution_times.py"
+                <a href="https://github.com/GenericMappingTools/pygmt/issues/new?title=Suggested%20improvement%20for%20api/generated/pygmt.show_versions&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
                    class="fa fa-github"> Improve this page</a>
             
         
@@ -235,31 +251,22 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="computation-times">
-<span id="sphx-glr-gallery-coast-sg-execution-times"></span><h1>Computation times<a class="headerlink" href="#computation-times" title="Permalink to this headline">¶</a></h1>
-<p><strong>00:03.265</strong> total execution time for <strong>gallery_coast</strong> files:</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 79%" />
-<col style="width: 12%" />
-<col style="width: 9%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="borders.html#sphx-glr-gallery-coast-borders-py"><span class="std std-ref">Political Boundaries</span></a> (<code class="docutils literal notranslate"><span class="pre">borders.py</span></code>)</p></td>
-<td><p>00:01.430</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="land_and_water.html#sphx-glr-gallery-coast-land-and-water-py"><span class="std std-ref">Color land and water</span></a> (<code class="docutils literal notranslate"><span class="pre">land_and_water.py</span></code>)</p></td>
-<td><p>00:00.958</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="shorelines.html#sphx-glr-gallery-coast-shorelines-py"><span class="std std-ref">Shorelines</span></a> (<code class="docutils literal notranslate"><span class="pre">shorelines.py</span></code>)</p></td>
-<td><p>00:00.877</p></td>
-<td><p>0.0 MB</p></td>
-</tr>
-</tbody>
-</table>
-</div>
+<div class="section" id="pygmt-show-versions">
+<h1>pygmt.show_versions<a class="headerlink" href="#pygmt-show-versions" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pygmt.show_versions">
+<code class="sig-prename descclassname">pygmt.</code><code class="sig-name descname">show_versions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pygmt.html#show_versions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pygmt.show_versions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints various dependency versions useful when submitting bug reports. This
+includes information about:</p>
+<ul class="simple">
+<li><p>PyGMT itself</p></li>
+<li><p>System information (Python version, Operating System)</p></li>
+<li><p>Core dependency versions (Numpy, Pandas, Xarray, etc)</p></li>
+<li><p>GMT library information</p></li>
+</ul>
+</dd></dl>
+
+<div style='clear:both'></div></div>
 
 
            </div>
@@ -267,6 +274,15 @@
           </div>
           
 <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pygmt.datasets.load_earth_relief.html" class="btn btn-neutral float-right" title="pygmt.datasets.load_earth_relief" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pygmt.print_clib_info.html" class="btn btn-neutral float-left" title="pygmt.print_clib_info" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

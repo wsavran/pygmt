@@ -277,13 +277,13 @@ operator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>y</strong><strong>, </strong><strong>z</strong> (<em>x</em><em>,</em>) – Arrays of x and y coordinates and values z of the data points.</p></li>
+<li><p><strong>x/y/z</strong> (<em>1d arrays</em>) – Arrays of x and y coordinates and values z of the data points.</p></li>
 <li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em> or </em><em>2d array</em>) – Either a data file name or a 2d numpy array with the tabular data.</p></li>
-<li><p><strong>(</strong><strong>I</strong><strong>)</strong> (<em>spacing</em>) – <code class="docutils literal notranslate"><span class="pre">'xinc[unit][+e|n][/yinc[unit][+e|n]]'</span></code>.
+<li><p><strong>spacing</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <code class="docutils literal notranslate"><span class="pre">'xinc[unit][+e|n][/yinc[unit][+e|n]]'</span></code>.
 x_inc [and optionally y_inc] is the grid spacing.</p></li>
-<li><p><strong>(</strong><strong>R</strong><strong>)</strong> (<em>region</em>) – <code class="docutils literal notranslate"><span class="pre">'xmin/xmax/ymin/ymax[+r][+uunit]'</span></code>.
+<li><p><strong>region</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – <code class="docutils literal notranslate"><span class="pre">'xmin/xmax/ymin/ymax[+r][+uunit]'</span></code>.
 Specify the region of interest.</p></li>
-<li><p><strong>(</strong><strong>G</strong><strong>)</strong> (<em>outfile</em>) – Optional. The file name for the output netcdf file with extension .nc
+<li><p><strong>outfile</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Optional. The file name for the output netcdf file with extension .nc
 to store the grid in.</p></li>
 </ul>
 </dd>
@@ -324,7 +324,7 @@ to store the grid in.</p></li>
         &copy; Copyright 2017-2020, The PyGMT Developers.
       
         <span class="commit">
-          Revision <code><a href="https://github.com/GenericMappingTools/pygmt/commit/809a888755c5dedc86ea74d0ae0497295b5311a4">809a888</a></code>.
+          Revision <code><a href="https://github.com/GenericMappingTools/pygmt/commit/0267dd15c7626f5903cdb5a3e12ca545d70c884a">0267dd1</a></code>.
         </span>
       
 

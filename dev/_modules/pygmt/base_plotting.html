@@ -278,6 +278,7 @@
         <span class="n">W</span><span class="o">=</span><span class="s2">&quot;shorelines&quot;</span><span class="p">,</span>
         <span class="n">G</span><span class="o">=</span><span class="s2">&quot;land&quot;</span><span class="p">,</span>
         <span class="n">S</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span>
+        <span class="n">U</span><span class="o">=</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="nd">@kwargs_to_strings</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="s2">&quot;sequence&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">coast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -308,7 +309,7 @@
 <span class="sd">        ----------</span>
 <span class="sd">        {J}</span>
 <span class="sd">        {R}</span>
-<span class="sd">        A : int, float, or str</span>
+<span class="sd">        area_thresh : int, float, or str</span>
 <span class="sd">            ``&#39;min_area[/min_level/max_level][+ag|i|s|S][+r|l][+ppercent]&#39;``</span>
 <span class="sd">            Features with an area smaller than min_area in km^2 or of</span>
 <span class="sd">            hierarchical level that is lower than min_level or higher than</span>
@@ -316,26 +317,26 @@
 <span class="sd">        {B}</span>
 <span class="sd">        C : str</span>
 <span class="sd">            Set the shade, color, or pattern for lakes and river-lakes.</span>
-<span class="sd">        D : str</span>
+<span class="sd">        resolution : str</span>
 <span class="sd">            Selects the resolution of the data set to use ((f)ull, (h)igh,</span>
 <span class="sd">            (i)ntermediate, (l)ow, and (c)rude).</span>
-<span class="sd">        G : str</span>
+<span class="sd">        land : str</span>
 <span class="sd">            Select filling or clipping of “dry” areas.</span>
-<span class="sd">        I : str</span>
+<span class="sd">        rivers : str</span>
 <span class="sd">            ``&#39;river[/pen]&#39;``</span>
 <span class="sd">            Draw rivers. Specify the type of rivers and [optionally] append pen</span>
 <span class="sd">            attributes.</span>
-<span class="sd">        L : str</span>
+<span class="sd">        map_scale : str</span>
 <span class="sd">            ``&#39;[g|j|J|n|x]refpoint&#39;``</span>
 <span class="sd">            Draws a simple map scale centered on the reference point specified.</span>
-<span class="sd">        N : str</span>
+<span class="sd">        borders : str</span>
 <span class="sd">            ``&#39;border[/pen]&#39;``</span>
 <span class="sd">            Draw political boundaries. Specify the type of boundary and</span>
 <span class="sd">            [optionally] append pen attributes</span>
-<span class="sd">        S : str</span>
+<span class="sd">        water : str</span>
 <span class="sd">            Select filling or clipping of “wet” areas.</span>
 <span class="sd">        {U}</span>
-<span class="sd">        W : str</span>
+<span class="sd">        shorelines : str</span>
 <span class="sd">            ``&#39;[level/]pen&#39;``</span>
 <span class="sd">            Draw shorelines [Default is no shorelines]. Append pen attributes.</span>
 
@@ -374,23 +375,24 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        position (D) : str</span>
+<span class="sd">        position : str</span>
 <span class="sd">            ``[g|j|J|n|x]refpoint[+wlength[/width]][+e[b|f][length]][+h|v]</span>
 <span class="sd">            [+jjustify][+m[a|c|l|u]][+n[txt]][+odx[/dy]]``. Defines the</span>
 <span class="sd">            reference point on the map for the color scale using one of four</span>
-<span class="sd">            coordinate systems: (1) Use -Dg for map (user) coordinates, (2) use</span>
-<span class="sd">            -Dj or -DJ for setting refpoint via a 2-char justification code</span>
-<span class="sd">            that refers to the (invisible) map domain rectangle, (3) use -Dn</span>
-<span class="sd">            for normalized (0-1) coordinates, or (4) use -Dx for plot</span>
-<span class="sd">            coordinates (inches, cm, etc.). All but -Dx requires both -R and</span>
-<span class="sd">            -J to be specified. Append +w followed by the length and width of</span>
-<span class="sd">            the color bar. If width is not specified then it is set to 4% of</span>
-<span class="sd">            the given length. Give a negative length to reverse the scale bar.</span>
-<span class="sd">            Append +h to get a horizontal scale [Default is vertical (+v)]. By</span>
-<span class="sd">            default, the anchor point on the scale is assumed to be the bottom</span>
-<span class="sd">            left corner (BL), but this can be changed by appending +j followed</span>
-<span class="sd">            by a 2-char justification code justify.</span>
-<span class="sd">        box (F) : bool or str</span>
+<span class="sd">            coordinate systems: (1) Use *g* for map (user) coordinates, (2) use</span>
+<span class="sd">            *j* or *J* for setting refpoint via a 2-char justification code</span>
+<span class="sd">            that refers to the (invisible) map domain rectangle, (3) use *n*</span>
+<span class="sd">            for normalized (0-1) coordinates, or (4) use *x* for plot</span>
+<span class="sd">            coordinates (inches, cm, etc.). All but *x* requires both *region*</span>
+<span class="sd">            and *projection* to be specified. Append +w followed by the length</span>
+<span class="sd">            and width of the color bar. If width is not specified then it is</span>
+<span class="sd">            set to 4% of the given length. Give a negative length to reverse</span>
+<span class="sd">            the scale bar. Append +h to get a horizontal scale</span>
+<span class="sd">            [Default is vertical (+v)]. By default, the anchor point on the</span>
+<span class="sd">            scale is assumed to be the bottom left corner (BL), but this can be</span>
+<span class="sd">            changed by appending +j followed by a 2-char justification code</span>
+<span class="sd">            *justify*.</span>
+<span class="sd">        box : bool or str</span>
 <span class="sd">            ``[+cclearances][+gfill][+i[[gap/]pen]][+p[pen]][+r[radius]]</span>
 <span class="sd">            [+s[[dx/dy/][shade]]]``. If set to True, draws a rectangular</span>
 <span class="sd">            border around the color scale. Alternatively, specify a different</span>
@@ -406,12 +408,12 @@
 <span class="sd">            offset background shaded region. Here, dx/dy indicates the shift</span>
 <span class="sd">            relative to the foreground frame [4p/-4p] and shade sets the fill</span>
 <span class="sd">            style to use for shading [gray50].</span>
-<span class="sd">        truncate (G) : list or str</span>
+<span class="sd">        truncate : list or str</span>
 <span class="sd">            ``zlo/zhi`` Truncate the incoming CPT so that the lowest and</span>
 <span class="sd">            highest z-levels are to zlo and zhi. If one of these equal NaN then</span>
 <span class="sd">            we leave that end of the CPT alone. The truncation takes place</span>
 <span class="sd">            before the plotting.</span>
-<span class="sd">        scale (W) : float</span>
+<span class="sd">        scale : float</span>
 <span class="sd">            Multiply all z-values in the CPT by the provided scale. By default</span>
 <span class="sd">            the CPT is used as is.</span>
 
@@ -431,7 +433,7 @@
         <span class="n">Q</span><span class="o">=</span><span class="s2">&quot;cut&quot;</span><span class="p">,</span>
         <span class="n">R</span><span class="o">=</span><span class="s2">&quot;region&quot;</span><span class="p">,</span>
         <span class="n">S</span><span class="o">=</span><span class="s2">&quot;resample&quot;</span><span class="p">,</span>
-        <span class="n">U</span><span class="o">=</span><span class="s2">&quot;logo&quot;</span><span class="p">,</span>
+        <span class="n">U</span><span class="o">=</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
         <span class="n">W</span><span class="o">=</span><span class="s2">&quot;pen&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="nd">@kwargs_to_strings</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="s2">&quot;sequence&quot;</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="s2">&quot;sequence&quot;</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="s2">&quot;sequence_plus&quot;</span><span class="p">)</span>
@@ -449,7 +451,7 @@
 <span class="sd">        ----------</span>
 <span class="sd">        grid : str or xarray.DataArray</span>
 <span class="sd">            The file name of the input grid or the grid loaded as a DataArray.</span>
-<span class="sd">        C : str or int</span>
+<span class="sd">        interval : str or int</span>
 <span class="sd">            Specify the contour lines to generate.</span>
 
 <span class="sd">            - The filename of a `CPT`  file where the color boundaries will</span>
@@ -459,7 +461,7 @@
 <span class="sd">              angle (col 3)</span>
 <span class="sd">            - A fixed contour interval ``cont_int`` or a single contour with</span>
 <span class="sd">              ``+[cont_int]``</span>
-<span class="sd">        A : str,  int, or list</span>
+<span class="sd">        annotation : str,  int, or list</span>
 <span class="sd">            Specify or disable annotated contour levels, modifies annotated</span>
 <span class="sd">            contours specified in ``-C``.</span>
 
@@ -469,17 +471,18 @@
 <span class="sd">            - Optional label modifiers can be specified as a single string</span>
 <span class="sd">              ``&#39;[annot_int]+e&#39;``  or with a list of options</span>
 <span class="sd">              ``([annot_int], &#39;e&#39;, &#39;f10p&#39;, &#39;gred&#39;)``.</span>
-<span class="sd">        L : str or list of 2 ints</span>
+<span class="sd">        limit : str or list of 2 ints</span>
 <span class="sd">            Do no draw contours below `low` or above `high`, specify as string</span>
 <span class="sd">            ``&#39;[low]/[high]&#39;``  or list ``[low,high]``.</span>
-<span class="sd">        Q : string or int</span>
+<span class="sd">        cut : str or int</span>
 <span class="sd">            Do not draw contours with less than `cut` number of points.</span>
-<span class="sd">        S : string or int</span>
+<span class="sd">        resample : str or int</span>
 <span class="sd">            Resample smoothing factor.</span>
 <span class="sd">        {J}</span>
 <span class="sd">        {R}</span>
 <span class="sd">        {B}</span>
 <span class="sd">        {G}</span>
+<span class="sd">        {U}</span>
 <span class="sd">        {W}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_preprocess</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -647,6 +650,7 @@
         <span class="n">i</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">,</span>
         <span class="n">l</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span>
         <span class="n">C</span><span class="o">=</span><span class="s2">&quot;cmap&quot;</span><span class="p">,</span>
+        <span class="n">U</span><span class="o">=</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="nd">@kwargs_to_strings</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="s2">&quot;sequence&quot;</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="s2">&quot;sequence_comma&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sizes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -679,7 +683,7 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        x, y : float or 1d arrays</span>
+<span class="sd">        x/y : float or 1d arrays</span>
 <span class="sd">            The x and y coordinates, or arrays of x and y coordinates of the</span>
 <span class="sd">            data points</span>
 <span class="sd">        data : str or 2d array</span>
@@ -709,12 +713,12 @@
 <span class="sd">            ``&#39;[x|y|X|Y][+a][+cl|f][+n][+wcap][+ppen]&#39;``.</span>
 <span class="sd">            Draw symmetrical error bars.</span>
 <span class="sd">        {G}</span>
-<span class="sd">        S : str</span>
+<span class="sd">        style : str</span>
 <span class="sd">            Plot symbols (including vectors, pie slices, fronts, decorated or</span>
 <span class="sd">            quoted lines).</span>
 <span class="sd">        {W}</span>
 <span class="sd">        {U}</span>
-<span class="sd">        l : str</span>
+<span class="sd">        label : str</span>
 <span class="sd">            Add a legend entry for the symbol or line being plotted.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_preprocess</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -783,7 +787,7 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        x, y, z : 1d arrays</span>
+<span class="sd">        x/y/z : 1d arrays</span>
 <span class="sd">            Arrays of x and y coordinates and values z of the data points.</span>
 <span class="sd">        data : str or 2d array</span>
 <span class="sd">            Either a data file name or a 2d numpy array with the tabular data.</span>
@@ -794,21 +798,26 @@
 <span class="sd">            By default, geographic line segments are drawn as great circle</span>
 <span class="sd">            arcs. To draw them as straight lines, use *A*.</span>
 <span class="sd">        {B}</span>
-<span class="sd">        C : Contour file or level(s)</span>
-<span class="sd">        D : Dump contour coordinates</span>
-<span class="sd">        E : Network information</span>
-<span class="sd">        G : Placement of labels</span>
-<span class="sd">        I : Color the triangles using CPT</span>
-<span class="sd">        L : Pen to draw the underlying triangulation (default none)</span>
-<span class="sd">        N : Do not clip contours</span>
-<span class="sd">        Q : Minimum contour length</span>
-<span class="sd">            ``&#39;[p|t]&#39;``</span>
-<span class="sd">        S : Skip input points outside region</span>
-<span class="sd">            ``&#39;[p|t]&#39;``</span>
+<span class="sd">        levels : str</span>
+<span class="sd">            Contour file or level(s)</span>
+<span class="sd">        D : str</span>
+<span class="sd">            Dump contour coordinates</span>
+<span class="sd">        E : str</span>
+<span class="sd">            Network information</span>
+<span class="sd">        label_placement : str</span>
+<span class="sd">            Placement of labels</span>
+<span class="sd">        I : bool</span>
+<span class="sd">            Color the triangles using CPT</span>
+<span class="sd">        triangular_mesh_pen : str</span>
+<span class="sd">            Pen to draw the underlying triangulation (default none)</span>
+<span class="sd">        N : bool</span>
+<span class="sd">            Do not clip contours</span>
+<span class="sd">        Q : float or str</span>
+<span class="sd">            Do not draw contours with less than cut number of points.</span>
+<span class="sd">            ``&#39;[cut[unit]][+z]&#39;``</span>
+<span class="sd">        skip : bool or str</span>
+<span class="sd">            Skip input points outside region ``&#39;[p|t]&#39;``</span>
 <span class="sd">        {W}</span>
-<span class="sd">        X : Origin shift x</span>
-<span class="sd">        Y : Origin shift y</span>
-
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_preprocess</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -831,7 +840,15 @@
                 <span class="n">lib</span><span class="o">.</span><span class="n">call_module</span><span class="p">(</span><span class="s2">&quot;contour&quot;</span><span class="p">,</span> <span class="n">arg_str</span><span class="p">)</span>
 
     <span class="nd">@fmt_docstring</span>
-    <span class="nd">@use_alias</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="s2">&quot;region&quot;</span><span class="p">,</span> <span class="n">J</span><span class="o">=</span><span class="s2">&quot;projection&quot;</span><span class="p">,</span> <span class="n">B</span><span class="o">=</span><span class="s2">&quot;frame&quot;</span><span class="p">)</span>
+    <span class="nd">@use_alias</span><span class="p">(</span>
+        <span class="n">R</span><span class="o">=</span><span class="s2">&quot;region&quot;</span><span class="p">,</span>
+        <span class="n">J</span><span class="o">=</span><span class="s2">&quot;projection&quot;</span><span class="p">,</span>
+        <span class="n">B</span><span class="o">=</span><span class="s2">&quot;frame&quot;</span><span class="p">,</span>
+        <span class="n">L</span><span class="o">=</span><span class="s2">&quot;map_scale&quot;</span><span class="p">,</span>
+        <span class="n">Td</span><span class="o">=</span><span class="s2">&quot;rose&quot;</span><span class="p">,</span>
+        <span class="n">Tm</span><span class="o">=</span><span class="s2">&quot;compass&quot;</span><span class="p">,</span>
+        <span class="n">U</span><span class="o">=</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="nd">@kwargs_to_strings</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="s2">&quot;sequence&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">basemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -842,7 +859,8 @@
 <span class="sd">        [optionally] gridlines. A simple map scale or directional rose may also</span>
 <span class="sd">        be plotted.</span>
 
-<span class="sd">        At least one of the options *B*, *L*, or *T* must be specified.</span>
+<span class="sd">        At least one of the options *frame*, *map_scale*, *rose* or *compass*</span>
+<span class="sd">        must be specified.</span>
 
 <span class="sd">        Full option list at :gmt-docs:`basemap.html`</span>
 
@@ -853,13 +871,13 @@
 <span class="sd">        {J}</span>
 <span class="sd">        {R}</span>
 <span class="sd">        {B}</span>
-<span class="sd">        L : str</span>
+<span class="sd">        map_scale : str</span>
 <span class="sd">            ``&#39;[g|j|J|n|x]refpoint&#39;``</span>
 <span class="sd">            Draws a simple map scale centered on the reference point specified.</span>
-<span class="sd">        Td : str</span>
+<span class="sd">        rose : str</span>
 <span class="sd">            Draws a map directional rose on the map at the location defined by</span>
 <span class="sd">            the reference and anchor points.</span>
-<span class="sd">        Tm : str</span>
+<span class="sd">        compass : str</span>
 <span class="sd">            Draws a map magnetic rose on the map at the location defined by the</span>
 <span class="sd">            reference and anchor points</span>
 <span class="sd">        {U}</span>
@@ -872,7 +890,7 @@
             <span class="n">lib</span><span class="o">.</span><span class="n">call_module</span><span class="p">(</span><span class="s2">&quot;basemap&quot;</span><span class="p">,</span> <span class="n">build_arg_string</span><span class="p">(</span><span class="n">kwargs</span><span class="p">))</span>
 
     <span class="nd">@fmt_docstring</span>
-    <span class="nd">@use_alias</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="s2">&quot;region&quot;</span><span class="p">,</span> <span class="n">J</span><span class="o">=</span><span class="s2">&quot;projection&quot;</span><span class="p">)</span>
+    <span class="nd">@use_alias</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="s2">&quot;region&quot;</span><span class="p">,</span> <span class="n">J</span><span class="o">=</span><span class="s2">&quot;projection&quot;</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="s2">&quot;position&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">)</span>
     <span class="nd">@kwargs_to_strings</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="s2">&quot;sequence&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">logo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -891,10 +909,10 @@
 <span class="sd">        ----------</span>
 <span class="sd">        {J}</span>
 <span class="sd">        {R}</span>
-<span class="sd">        D : str</span>
+<span class="sd">        position : str</span>
 <span class="sd">            ``&#39;[g|j|J|n|x]refpoint+wwidth[+jjustify][+odx[/dy]]&#39;``.</span>
 <span class="sd">            Sets reference point on the map for the image.</span>
-<span class="sd">        F : bool or str</span>
+<span class="sd">        box : bool or str</span>
 <span class="sd">            Without further options, draws a rectangular border around the</span>
 <span class="sd">            GMT logo.</span>
 <span class="sd">        {U}</span>
@@ -907,7 +925,7 @@
             <span class="n">lib</span><span class="o">.</span><span class="n">call_module</span><span class="p">(</span><span class="s2">&quot;logo&quot;</span><span class="p">,</span> <span class="n">build_arg_string</span><span class="p">(</span><span class="n">kwargs</span><span class="p">))</span>
 
     <span class="nd">@fmt_docstring</span>
-    <span class="nd">@use_alias</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="s2">&quot;region&quot;</span><span class="p">,</span> <span class="n">J</span><span class="o">=</span><span class="s2">&quot;projection&quot;</span><span class="p">)</span>
+    <span class="nd">@use_alias</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="s2">&quot;region&quot;</span><span class="p">,</span> <span class="n">J</span><span class="o">=</span><span class="s2">&quot;projection&quot;</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="s2">&quot;position&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="s2">&quot;monochrome&quot;</span><span class="p">)</span>
     <span class="nd">@kwargs_to_strings</span><span class="p">(</span><span class="n">R</span><span class="o">=</span><span class="s2">&quot;sequence&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">imagefile</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -922,17 +940,23 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
+<span class="sd">        imagefile : str</span>
+<span class="sd">            This must be an Encapsulated PostScript (EPS) file or a raster</span>
+<span class="sd">            image. An EPS file must contain an appropriate BoundingBox. A</span>
+<span class="sd">            raster file can have a depth of 1, 8, 24, or 32 bits and is read</span>
+<span class="sd">            via GDAL. Note: If GDAL was not configured during GMT installation</span>
+<span class="sd">            then only EPS files are supported.</span>
 <span class="sd">        {J}</span>
 <span class="sd">        {R}</span>
-<span class="sd">        D: str</span>
+<span class="sd">        position : str</span>
 <span class="sd">            ``&#39;[g|j|J|n|x]refpoint+rdpi+w[-]width[/height][+jjustify]</span>
 <span class="sd">            [+nnx[/ny]][+odx[/dy]]&#39;`` Sets reference point on the map for the</span>
 <span class="sd">            image.</span>
-<span class="sd">        F : bool or str</span>
+<span class="sd">        box : bool or str</span>
 <span class="sd">            ``&#39;[+cclearances][+gfill][+i[[gap/]pen]][+p[pen]][+r[radius]]</span>
 <span class="sd">            [+s[[dx/dy/][shade]]]&#39;`` Without further options, draws a</span>
 <span class="sd">            rectangular border around the image using **MAP_FRAME_PEN**.</span>
-<span class="sd">        M : bool</span>
+<span class="sd">        monochrome : bool</span>
 <span class="sd">            Convert color image to monochrome grayshades using the (television)</span>
 <span class="sd">            YIQ-transformation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -966,12 +990,12 @@
 <span class="sd">            specification file.</span>
 <span class="sd">        {J}</span>
 <span class="sd">        {R}</span>
-<span class="sd">        position (D) : str</span>
+<span class="sd">        position : str</span>
 <span class="sd">            ``&#39;[g|j|J|n|x]refpoint+wwidth[/height][+jjustify][+lspacing]</span>
 <span class="sd">            [+odx[/dy]]&#39;`` Defines the reference point on the map for the</span>
 <span class="sd">            legend. By default, uses &#39;JTR+jTR+o0.2c&#39; which places the legend at</span>
 <span class="sd">            the top-right corner inside the map frame, with a 0.2 cm offset.</span>
-<span class="sd">        box (F) : bool or str</span>
+<span class="sd">        box : bool or str</span>
 <span class="sd">            ``&#39;[+cclearances][+gfill][+i[[gap/]pen]][+p[pen]][+r[radius]]</span>
 <span class="sd">            [+s[[dx/dy/][shade]]]&#39;`` Without further options, draws a</span>
 <span class="sd">            rectangular border around the legend using **MAP_FRAME_PEN**. By</span>
@@ -1034,12 +1058,12 @@
 <span class="sd">        textfiles : str or list</span>
 <span class="sd">            A text data file name, or a list of filenames containing 1 or more</span>
 <span class="sd">            records with (x, y[, font, angle, justify], text).</span>
-<span class="sd">        x, y : float or 1d arrays</span>
+<span class="sd">        x/y : float or 1d arrays</span>
 <span class="sd">            The x and y coordinates, or an array of x and y coordinates to plot</span>
 <span class="sd">            the text</span>
 <span class="sd">        text : str or 1d array</span>
 <span class="sd">            The text string, or an array of strings to plot on the figure</span>
-<span class="sd">        angle: int/float or bool</span>
+<span class="sd">        angle: int, float or bool</span>
 <span class="sd">            Set the angle measured in degrees counter-clockwise from</span>
 <span class="sd">            horizontal. E.g. 30 sets the text at 30 degrees. If no angle is</span>
 <span class="sd">            given then the input textfile(s) must have this as a column.</span>
@@ -1117,7 +1141,7 @@
         &copy; Copyright 2017-2020, The PyGMT Developers.
       
         <span class="commit">
-          Revision <code><a href="https://github.com/GenericMappingTools/pygmt/commit/809a888755c5dedc86ea74d0ae0497295b5311a4">809a888</a></code>.
+          Revision <code><a href="https://github.com/GenericMappingTools/pygmt/commit/0267dd15c7626f5903cdb5a3e12ca545d70c884a">0267dd1</a></code>.
         </span>
       
 
